@@ -62,6 +62,8 @@ class AdminController extends Controller
             'dataProvider' => $dataProvider,
             'dupl' => $dupl
         ]);
+
+
     }
 
     /**

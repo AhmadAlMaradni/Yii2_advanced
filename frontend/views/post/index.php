@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\PostSearch */
@@ -25,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        'id',
+        
         [
         'attribute'=>'username',
         'value'=>'user.username',],
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }],
 
         ['attribute'=>'View','format' => 'raw', 'value'=> function($model) {
-                    return '<a href="view?id='.$model->id.'" class="glyphicon glyphicon-eye-open"></a>';
+                    return '<a href="'.Url::base().'/post/view?id='.$model->id.'" class="glyphicon glyphicon-eye-open"></a>';
                 }],  
         ],
         ]); ?>

@@ -28,8 +28,8 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'OpenSooq',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'OpenSooq.com',
+        'brandUrl' => 'https://jo.opensooq.com/ar',//Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -39,7 +39,7 @@ AppAsset::register($this);
         ['label' => 'Post', 'url' => ['/post']],
         //['label' => 'admin' , 'url' => ['/admin']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'OpenSooq.com', 'url' => ('https://jo.opensooq.com/ar')],
+        //['label' => 'OpenSooq.com', 'url' => ('https://jo.opensooq.com/ar')],
 
     ];
     if (Yii::$app->user->isGuest) {
