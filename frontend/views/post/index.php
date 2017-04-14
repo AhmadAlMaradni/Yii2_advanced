@@ -38,7 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return implode(', ', ArrayHelper::map($data->postTags, 'TagsID', 'tag.Name'));
                 }],
 
-        ['class' => 'yii\grid\ActionColumn'],
+        ['attribute'=>'View','format' => 'raw', 'value'=> function($model) {
+                    return '<a href="view?id='.$model->id.'" class="glyphicon glyphicon-eye-open"></a>';
+                }],  
         ],
         ]); ?>
     </div>

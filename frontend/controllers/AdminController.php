@@ -38,15 +38,29 @@ class AdminController extends Controller
      */
     public function actionIndex()
     {
+
+        // if ( !Yii::$app->user->identity->isAdmin ) {
+        //     return $this->redirect(['/site/login']);
+        // }
+
         $searchModel = new PostSearch();
         // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $dataProvider = new ActiveDataProvider([
                 'query' => Post::find()->with('postTags'),
         ]);
+
+        $dupl = new ActiveDataProvider([
+                'query' => Post::find()->select('title, description, COUNT(*)')
+            ->groupBy('title','description')
+            ->having('COUNT(*) > 1')
+            ]);
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dupl' => $dupl
         ]);
     }
 
@@ -69,10 +83,8 @@ class AdminController extends Controller
      */
     public function actionCreate()
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['/site/login']);
-        }
         $model = new post();
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $request = Yii::$app->request->post('Post');

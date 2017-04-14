@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'OpenSooq',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,10 +36,10 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
         ['label' => 'Post', 'url' => ['/post']],
-        ['label' => 'admin', 'url' => ['/admin']],
+        //['label' => 'admin' , 'url' => ['/admin']],
+        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'OpenSooq.com', 'url' => ('https://jo.opensooq.com/ar')],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -55,6 +55,13 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+
+    if (!Yii::$app->user->isGuest && Yii::$app->user->identity->username =='admin' && Yii::$app->user->identity->id ==1) {
+ $menuItems[] = ['label' => 'admin', 'url' => ['/admin']];
+
+    }
+
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
