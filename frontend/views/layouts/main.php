@@ -39,6 +39,7 @@ AppAsset::register($this);
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
         ['label' => 'Post', 'url' => ['/post']],
+        ['label' => 'admin', 'url' => ['/admin']],
 
     ];
     if (Yii::$app->user->isGuest) {

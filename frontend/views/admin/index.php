@@ -38,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return implode(', ', ArrayHelper::map($data->postTags, 'TagsID', 'tag.Name'));
                 }],
 
-        ['class' => 'yii\grid\ActionColumn'],
         ],
         ]); ?>
     </div>

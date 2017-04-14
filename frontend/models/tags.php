@@ -26,7 +26,7 @@ class tags extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID', 'Name'], 'required'],
+            [['Name'], 'required'],
             [['ID'], 'integer'],
             [['Name'], 'string', 'max' => 50],
         ];

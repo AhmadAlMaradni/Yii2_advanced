@@ -15,7 +15,7 @@ use yii\data\ActiveDataProvider;
 /**
  * PostController implements the CRUD actions for post model.
  */
-class PostController extends Controller
+class AdminController extends Controller
 {
     /**
      * @inheritdoc
@@ -141,3 +141,5 @@ class PostController extends Controller
         }
     }
 }
+
+

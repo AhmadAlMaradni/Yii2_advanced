@@ -1,6 +1,10 @@
 <?php
 
 namespace frontend\models;
+use frontend\models\Categories;
+use frontend\models\User;
+use frontend\models\tags;
+
 
 use Yii;
 
@@ -10,8 +14,8 @@ use Yii;
  * @property integer $id
  * @property string $title
  * @property string $description
- * @property integer $category
- * @property string $tags
+ * @property integer $user_id
+ * @property integer $category_id
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -29,10 +33,10 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'category', 'tags'], 'required'],
+            [['title', 'description', 'user_id', 'category_id'], 'required'],
             [['description'], 'string'],
-            [['category'], 'integer'],
-            [['title', 'tags'], 'string', 'max' => 100],
+            [['user_id', 'category_id'], 'integer'],
+            [['title'], 'string', 'max' => 100],
         ];
     }
 
@@ -45,8 +49,49 @@ class Post extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'description' => 'Description',
-            'category' => 'Category',
-            'tags' => 'Tags',
+            'user_error()id' => 'User ID',
+            'category_id' => 'Category ID',
         ];
     }
+
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostTags()
+    {
+        return $this->hasMany(posttags::className(), ['PostsID' => 'id'])->with('tag');
+    }
+
+
+     public function getCateg()
+    {
+        return Categories::find()->select('name')->indexBy('id')->column();
+    }
+
+
+     public function getTag()
+    {
+        return tags::find()->select('name')->indexBy('id')->column();
+    }
+
 }
